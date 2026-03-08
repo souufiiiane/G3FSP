@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G3FSP - Fondations Spéciales & Solutions Géotechniques</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- 1. Loader -->
+    <div id="loader">
+        <div class="loader-content">
+            <img src="Logo V1.2.png" alt="G3FSP Logo" class="loader-brand-img">
+            <div class="loader-progress-wrap">
+                <div id="loader-bar"></div>
+            </div>
+            <div id="loader-percent">0%</div>
+        </div>
+    </div>
+
+    <!-- 2. Global Progress Bar -->
+    <div id="global-progress">
+        <div id="global-progress-bar"></div>
+    </div>
+
+    <!-- 3. Fixed header -->
+    <header class="site-header">
+        <a href="#accueil" class="logo">
+            <img src="Logo V1.2.png" alt="G3FSP Logo" class="header-logo-img">
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="desktop-nav">
+            <a href="#accueil">Accueil</a>
+            <a href="#a-propos">À Propos</a>
+            <a href="#services">Nos Services</a>
+            <a href="#references">Références</a>
+            <a href="#contact" class="btn-outline">Contact</a>
+        </nav>
+
+        <!-- Mobile Toggle -->
+        <button class="mobile-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Overlay Nav -->
+    <div class="mobile-nav-overlay">
+        <div class="mobile-nav-inner">
+            <a href="#accueil" class="mobile-link">Accueil</a>
+            <a href="#a-propos" class="mobile-link">À Propos</a>
+            <a href="#services" class="mobile-link">Nos Services</a>
+            <a href="#references" class="mobile-link">Références</a>
+            <a href="#contact" class="mobile-link mobile-btn-outline">Contact</a>
+        </div>
+    </div>
+
+    <!-- 4. Hero: Standalone 100vh -->
+    <section class="hero-standalone" id="accueil">
+        <div class="hero-content">
+            <span class="section-label">001 / FONDATIONS SPÉCIALES</span>
+            <h1 class="hero-heading">
+                <span class="word">Expertise,</span>
+                <span class="word">Sécurité &</span>
+                <span class="word">Innovation</span>
+            </h1>
+            <p class="hero-tagline">au service de vos ouvrages.</p>
+
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">NOS SERVICES</a>
+                <a href="#contact" class="btn-secondary">NOUS CONTACTER</a>
+            </div>
+
+            <div class="scroll-indicator">
+                <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="1" width="22" height="38" rx="11" stroke="currentColor" stroke-width="2" />
+                    <circle class="scroll-wheel" cx="12" cy="10" r="2" fill="currentColor" />
+                </svg>
+                <span>SCROLL TO EXPLORE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Canvas Wrap (Right Aligned) -->
+    <div class="canvas-wrap">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <!-- 6. Dark overlay -->
+    <div id="dark-overlay"></div>
+
+    <!-- 7. Scroll container (tall enough for 6 sections + hero) -->
+    <div id="scroll-container">
+        <!-- Spacer for hero to scroll past -->
+        <div class="scroll-spacer-hero"></div>
+
+        <!-- Section 2: À Propos -->
+        <section class="scroll-section section-content align-left" id="a-propos" data-enter="2" data-leave="22"
+            data-animation="slide-right">
+            <div class="section-inner">
+                <span class="section-label">002 / À PROPOS DE G3FSP</span>
+                <h2 class="section-heading">Leaders en géotechnique complexe.</h2>
+                <p class="section-body">
+                    Nous accompagnons les professionnels de la construction, les ingénieurs et les acteurs publics dans
+                    la sécurisation et la pérennité de leurs ouvrages à travers tout le Royaume.
+                </p>
+
+                <div class="features-list">
+                    <div class="feature-item">
+                        <h3>Expertise</h3>
+                        <p>Une équipe d'ingénieurs et techniciens hautement qualifiés.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Sécurité</h3>
+                        <p>Respect strict des normes internationales.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Innovation</h3>
+                        <p>Équipements de pointe pour les défis géologiques.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Services - Tirants -->
+        <section class="scroll-section section-content align-left" id="services" data-enter="25" data-leave="45"
+            data-animation="fade-up">
+            <div class="section-inner">
+                <span class="section-label">003 / NOS SOLUTIONS</span>
+                <h2 class="section-heading">Tirants d'Ancrage & Clouage</h2>
+                <p class="section-body">
+                    Conception et installation de tirants d'ancrage actifs et passifs pour le soutènement de parois, la
+                    stabilisation de talus et la reprise en sous-œuvre. Maintien optimal garanti face aux poussées des
+                    terres.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 4: Services - Pieux -->
+        <section class="scroll-section section-content align-left" data-enter="48" data-leave="68"
+            data-animation="scale-up">
+            <div class="section-inner">
+                <span class="section-label">004 / NOS SOLUTIONS</span>
+                <h2 class="section-heading">Pieux & Micropieux</h2>
+                <p class="section-body">
+                    Spécialistes des fondations profondes, nous réalisons des pieux et micropieux adaptés à tous types
+                    de sols pour transférer les charges vers des couches plus résistantes.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 5: Services - Béton -->
+        <section class="scroll-section section-content align-left" data-enter="71" data-leave="91"
+            data-animation="clip-reveal">
+            <div class="section-inner">
+                <span class="section-label">005 / NOS SOLUTIONS</span>
+                <h2 class="section-heading">Béton Projeté</h2>
+                <p class="section-body">
+                    Solution de choix (voie sèche ou mouillée) pour le revêtement de parois clouées, confortement de
+                    tunnels et réparation d'ouvrages. Résistance mécanique rapide.
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer Wrap: Normal document flow for white background -->
+    <div class="footer-wrap light-mode">
+        <!-- Section 6: Références -->
+        <section class="normal-section align-center" id="references">
+            <div class="section-inner">
+                <h2 class="section-label left-brand">NOS PROJETS RÉCENTS</h2>
+
+                <div class="project-grid">
+                    <div class="project-card">
+                        <img src="./Projects/Restauration de la Mosquée de Tinmel.jpeg" alt="Mosquée de Tinmel">
+                        <h3 class="project-card-title">Restauration de la Mosquée de Tinmel</h3>
+                    </div>
+                    <div class="project-card">
+                        <img src="./Projects/Stabilisation de Talus à Nador.jpeg" alt="Talus à Nador">
+                        <h3 class="project-card-title">Stabilisation de Talus à Nador</h3>
+                    </div>
+                </div>
+
+                <a href="#references" class="btn-primary">DÉCOUVRIR NOS RÉFÉRENCES</a>
+            </div>
+        </section>
+
+        <!-- Section 7: Contact -->
+        <section class="normal-section align-center" id="contact">
+            <div class="section-inner">
+                <span class="section-label">007 / NOUS CONTACTER</span>
+                <h2 class="section-heading">Besoin d'une solution géotechnique ?</h2>
+                <p class="section-body">
+                    Notre équipe est à votre disposition pour étudier vos besoins sur-mesure.
+                </p>
+
+                <form class="contact-form">
+                    <input type="text" placeholder="Nom complet" required>
+                    <input type="text" placeholder="Société">
+                    <input type="email" placeholder="Adresse Email" required>
+                    <input type="tel" placeholder="Numéro de téléphone">
+                    <select required>
+                        <option value="" disabled selected>Sujet de la demande</option>
+                        <option value="tirants">Tirants d'ancrage</option>
+                        <option value="pieux">Pieux & Micropieux</option>
+                        <option value="beton">Béton projeté</option>
+                        <option value="autre">Autre demande</option>
+                    </select>
+                    <textarea placeholder="Message" rows="4" required></textarea>
+                    <button type="submit" class="btn-primary">Envoyer la demande</button>
+                </form>
+
+                <div class="footer-info">
+                    <p>Casablanca, Maroc | +212 661 455 673 | contact@g3fsp.ma</p>
+                    <p class="copyright">© 2026 G3FSP. Tous droits réservés.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
