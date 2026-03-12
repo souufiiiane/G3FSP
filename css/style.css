@@ -555,9 +555,10 @@ canvas#canvas {
 #scroll-container {
     position: relative;
     width: 100%;
-    height: 500vh;
-    /* Height reduced to eliminate gap */
-    z-index: 5;
+    height: 600vh;
+    /* Increased to allow for 400vh+ of sections + buffer */
+    z-index: 15;
+    /* Above hero and dark overlay */
 }
 
 .scroll-spacer-hero {

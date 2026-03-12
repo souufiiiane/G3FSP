@@ -225,11 +225,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     trigger: sec,
                     start: "top 85%", // trigger when top of section hits 85% down viewport
                 },
-                y: 60,
+                scale: 0.9,
+                y: 40,
                 opacity: 0,
                 stagger: 0.15,
                 duration: 1.2,
-                ease: "power4.out"
+                ease: "power3.out"
             });
         });
 
@@ -245,20 +246,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const type = section.dataset.animation;
         const persist = section.dataset.persist === "true";
 
-        // Enter / Leave percentages (0-1)
+        // Enter / Leave VH percentages
         const enterValue = parseFloat(section.dataset.enter) || 0;
         const leaveValue = parseFloat(section.dataset.leave) || 100;
-        const enter = enterValue / 100;
-        const leave = leaveValue / 100;
 
         const children = section.querySelectorAll(
             ".section-label, .section-heading, .section-body, .feature-item, .project-item, .project-card, .btn-primary, .contact-form, .footer-info"
         );
 
-        // Position it at the center of our scroll area where it will be visible
-        // We translate it absolutely based on percentage
-        const midpoint = enter + ((leave - enter) / 2);
-        section.style.top = `${midpoint * 100}%`;
+        // Position it at the center of its active scroll window
+        const midpoint = enterValue + ((leaveValue - enterValue) / 2);
+        section.style.top = `${midpoint}vh`;
+
+        let played = false;
 
         const tl = gsap.timeline({ paused: true });
 
@@ -284,33 +284,33 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Trigger Play/Reverse based on global scroll position
-        const scrollContainer = document.getElementById("scroll-container");
-        let played = false;
-
         ScrollTrigger.create({
-            trigger: scrollContainer,
+            trigger: document.documentElement,
             start: "top top",
             end: "bottom bottom",
             scrub: true,
             onUpdate: (self) => {
-                const p = self.progress;
+                // We use VH-based progress where 1.0 = 100vh
+                const scrollY = window.scrollY;
+                const vh = window.innerHeight;
+                const p = (scrollY / vh) * 100;
 
                 // Inside the active viewing window
-                if (p >= enter && p <= leave) {
+                if (p >= enterValue && p <= leaveValue) {
                     if (!played) {
                         tl.play();
                         played = true;
                     }
                 }
                 // Scrolled past it (reverse it, unless persist is true)
-                else if (p > leave) {
+                else if (p > leaveValue) {
                     if (played && !persist) {
                         tl.reverse();
                         played = false;
                     }
                 }
                 // Scrolled above it (reverse to hide)
-                else if (p < enter) {
+                else if (p < enterValue) {
                     if (played) {
                         tl.reverse();
                         played = false;
