@@ -118,14 +118,14 @@ h4,
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2.5rem 4vw;
+    padding: 1.5rem 4vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
-    mix-blend-mode: difference;
-    pointer-events: none;
-    /* Let clicks pass through if empty */
+    z-index: 1000;
+    background-color: #000000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: auto;
 }
 
 .site-header>* {
