@@ -302,17 +302,17 @@ document.addEventListener("DOMContentLoaded", () => {
                         played = true;
                     }
                 }
-                // Scrolled past it (instant hide, unless persist is true)
+                // Scrolled past it (reverse it, unless persist is true)
                 else if (p > leaveValue) {
                     if (played && !persist) {
-                        tl.progress(0).pause();
+                        tl.reverse();
                         played = false;
                     }
                 }
-                // Scrolled above it (instant hide)
+                // Scrolled above it (reverse to hide)
                 else if (p < enterValue) {
                     if (played) {
-                        tl.progress(0).pause();
+                        tl.reverse();
                         played = false;
                     }
                 }
