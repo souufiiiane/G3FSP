@@ -76,7 +76,7 @@ Explorez une sélection de nos projets récents, illustrant notre savoir-faire e
 ### Restauration de la Mosquée de Tinmel
 Confortement et sécurisation de la structure historique, alliant techniques modernes et respect du patrimoine.
 
-### Stabilisation de Talus à Nador
+### Complexe sportif Tanger
 Clouage de sol et application de béton projeté pour prévenir les éboulements sur un site à forte déclivité et sécuriser les infrastructures environnantes.
 
 </section>

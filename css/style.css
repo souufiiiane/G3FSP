@@ -764,6 +764,10 @@ canvas#canvas {
 
 .contact-form button {
     margin-top: 1rem;
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 .footer-info {

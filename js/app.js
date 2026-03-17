@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const normalSections = document.querySelectorAll(".normal-section");
         normalSections.forEach((sec) => {
             const children = sec.querySelectorAll(
-                ".section-label, .section-heading, .section-body, .feature-item, .project-item, .project-card, .btn-primary, .contact-form, .footer-info"
+                ".section-label, .section-heading, .section-body, .feature-item, .project-item, .project-card, a.btn-primary, .contact-form, .footer-info"
             );
             gsap.from(children, {
                 scrollTrigger: {
@@ -250,9 +250,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const enterValue = parseFloat(section.dataset.enter) || 0;
         const leaveValue = parseFloat(section.dataset.leave) || 100;
 
-        const children = section.querySelectorAll(
-            ".section-label, .section-heading, .section-body, .feature-item, .project-item, .project-card, .btn-primary, .contact-form, .footer-info"
-        );
+            const children = section.querySelectorAll(
+                ".section-label, .section-heading, .section-body, .feature-item, .project-item, .project-card, a.btn-primary, .contact-form, .footer-info"
+            );
 
         // Position it at the center of its active scroll window
         const midpoint = enterValue + ((leaveValue - enterValue) / 2);

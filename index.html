@@ -12,6 +12,8 @@
         href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
+    <link rel="icon" type="image/png" href="Logo V1.3.png">
+    <link rel="apple-touch-icon" href="Logo V1.3.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -190,7 +192,7 @@
                     </div>
                     <div class="project-card">
                         <img src="./Projects/Stabilisation de Talus à Nador.jpeg" alt="Talus à Nador">
-                        <h3 class="project-card-title">Stabilisation de Talus à Nador</h3>
+                        <h3 class="project-card-title">Complexe sportif Tanger</h3>
                     </div>
                 </div>
 
@@ -207,19 +209,23 @@
                     Notre équipe est à votre disposition pour étudier vos besoins sur-mesure.
                 </p>
 
-                <form class="contact-form">
-                    <input type="text" placeholder="Nom complet" required>
-                    <input type="text" placeholder="Société">
-                    <input type="email" placeholder="Adresse Email" required>
-                    <input type="tel" placeholder="Numéro de téléphone">
-                    <select required>
+                <form class="contact-form" action="https://formsubmit.co/nd.soufiane@gmail.com" method="POST">
+                    <!-- Hidden configuration for FormSubmit -->
+                    <input type="hidden" name="_subject" value="Nouvelle Demande depuis le site G3FSP">
+                    <input type="hidden" name="_template" value="basic">
+
+                    <input type="text" name="Nom" placeholder="Nom complet" required>
+                    <input type="text" name="Société" placeholder="Société">
+                    <input type="email" name="Email" placeholder="Adresse Email" required>
+                    <input type="tel" name="Téléphone" placeholder="Numéro de téléphone">
+                    <select name="Sujet" required>
                         <option value="" disabled selected>Sujet de la demande</option>
-                        <option value="tirants">Tirants d'ancrage</option>
-                        <option value="pieux">Pieux & Micropieux</option>
-                        <option value="beton">Béton projeté</option>
-                        <option value="autre">Autre demande</option>
+                        <option value="Tirants d'ancrage">Tirants d'ancrage</option>
+                        <option value="Pieux & Micropieux">Pieux & Micropieux</option>
+                        <option value="Béton projeté">Béton projeté</option>
+                        <option value="Autre">Autre demande</option>
                     </select>
-                    <textarea placeholder="Message" rows="4" required></textarea>
+                    <textarea name="Message" placeholder="Message" rows="4" required></textarea>
                     <button type="submit" class="btn-primary">Envoyer la demande</button>
                 </form>
 
