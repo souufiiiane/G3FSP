@@ -52,17 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let loadedCount = 0;
     let currentFrame = 0;
 
-    const loaderPercent = document.getElementById("loader-percent");
-    const loaderBar = document.getElementById("loader-bar");
-    const loader = document.getElementById("loader");
-
     // Pad number to 4 digits
     const pad = (num) => String(num).padStart(4, '0');
 
-    // First load 10 frames fast, then load the rest
-    const loadPhase1 = 10;
-
     function loadFrames() {
+        // Initialize animations instantly
+        initAnimations();
+
         for (let i = 1; i <= TOTAL_FRAMES; i++) {
             const img = new Image();
             img.src = `frames/frame_${pad(i)}.webp`;
@@ -70,33 +66,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 frames[i - 1] = img;
                 loadedCount++;
 
-                // Update loader UI
-                const p = Math.floor((loadedCount / TOTAL_FRAMES) * 100);
-                loaderPercent.innerText = `${p}%`;
-                loaderBar.style.width = `${p}%`;
-
                 // If first frame loaded, draw it
                 if (loadedCount === 1 && canvas) {
                     resizeCanvas();
                 }
-
-                // Hydrate page when fully loaded
-                if (loadedCount === TOTAL_FRAMES) {
-                    setTimeout(() => {
-                        loader.style.opacity = "0";
-                        setTimeout(() => loader.style.display = "none", 800);
-                        initAnimations();
-                    }, 500);
+                
+                // If it's the current frame we need, draw it
+                if (i - 1 === currentFrame && canvas) {
+                    drawFrame(currentFrame);
                 }
             };
             img.onerror = () => {
-                // Ignore missing frames slightly 
                 loadedCount++;
-                if (loadedCount === TOTAL_FRAMES) {
-                    loader.style.opacity = "0";
-                    setTimeout(() => loader.style.display = "none", 800);
-                    initAnimations();
-                }
             }
         }
     }
@@ -216,23 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 4c. Footer Sections Native Reveal
         const normalSections = document.querySelectorAll(".normal-section");
-        normalSections.forEach((sec) => {
-            const children = sec.querySelectorAll(
-                ".section-label, .section-heading, .section-body, .feature-item, .project-item, .project-card, a.btn-primary, .contact-form, .footer-info"
-            );
-            gsap.from(children, {
-                scrollTrigger: {
-                    trigger: sec,
-                    start: "top 85%", // trigger when top of section hits 85% down viewport
-                },
-                scale: 0.9,
-                y: 40,
-                opacity: 0,
-                stagger: 0.15,
-                duration: 1.2,
-                ease: "power3.out"
-            });
-        });
+        normalSections.forEach(setupSectionAnimation);
 
         // 4d. Setup Section Animations
         document.querySelectorAll(".scroll-section").forEach(setupSectionAnimation);
@@ -243,81 +208,39 @@ document.addEventListener("DOMContentLoaded", () => {
     // 5. Section Animation System
     // ----------------------------------------------------------------
     function setupSectionAnimation(section) {
-        const type = section.dataset.animation;
+        const type = section.dataset.animation || "fade-up";
         const persist = section.dataset.persist === "true";
 
-        // Enter / Leave VH percentages
-        const enterValue = parseFloat(section.dataset.enter) || 0;
-        const leaveValue = parseFloat(section.dataset.leave) || 100;
-
-            const children = section.querySelectorAll(
-                ".section-label, .section-heading, .section-body, .feature-item, .project-item, .project-card, a.btn-primary, .contact-form, .footer-info"
-            );
-
-        // Position it at the center of its active scroll window
-        const midpoint = enterValue + ((leaveValue - enterValue) / 2);
-        section.style.top = `${midpoint}vh`;
-
-        let played = false;
-
-        const tl = gsap.timeline({ paused: true });
-
-        // Add standard stagger animations Based on `type`
-        switch (type) {
-            case "fade-up":
-                tl.from(children, { y: 60, opacity: 0, stagger: 0.15, duration: 1.2, ease: "power4.out" });
-                break;
-            case "slide-left":
-                tl.from(children, { x: -80, opacity: 0, stagger: 0.15, duration: 1.2, ease: "power4.out" });
-                break;
-            case "slide-right":
-                tl.from(children, { x: 80, opacity: 0, stagger: 0.15, duration: 1.2, ease: "power4.out" });
-                break;
-            case "scale-up":
-                tl.from(children, { scale: 0.9, y: 40, opacity: 0, stagger: 0.15, duration: 1.2, ease: "power3.out" });
-                break;
-            case "clip-reveal":
-                tl.from(children, { clipPath: "inset(100% 0 0 0)", y: 40, opacity: 0, stagger: 0.15, duration: 1.2, ease: "power4.inOut" });
-                break;
-            default:
-                tl.from(children, { y: 60, opacity: 0, stagger: 0.15, duration: 1.2, ease: "power4.out" });
+        if (section.classList.contains('scroll-section')) {
+            const enterValue = parseFloat(section.dataset.enter) || 0;
+            const leaveValue = parseFloat(section.dataset.leave) || 100;
+            const midpoint = enterValue + ((leaveValue - enterValue) / 2);
+            section.style.top = `${midpoint}vh`;
         }
 
-        // Trigger Play/Reverse based on global scroll position
-        ScrollTrigger.create({
-            trigger: document.documentElement,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: true,
-            onUpdate: (self) => {
-                // We use VH-based progress where 1.0 = 100vh
-                const scrollY = window.scrollY;
-                const vh = window.innerHeight;
-                const p = (scrollY / vh) * 100;
+        const children = section.querySelectorAll(
+            ".section-label, .section-heading, .section-body, .feature-item, .project-item, .project-card, a.btn-primary, .contact-form, .footer-info"
+        );
 
-                // Inside the active viewing window
-                if (p >= enterValue && p <= leaveValue) {
-                    if (!played) {
-                        tl.play();
-                        played = true;
-                    }
-                }
-                // Scrolled past it (reverse it, unless persist is true)
-                else if (p > leaveValue) {
-                    if (played && !persist) {
-                        tl.reverse();
-                        played = false;
-                    }
-                }
-                // Scrolled above it (reverse to hide)
-                else if (p < enterValue) {
-                    if (played) {
-                        tl.reverse();
-                        played = false;
-                    }
-                }
-            }
+        // Prepare CSS-first animations
+        section.classList.add("css-animate-parent");
+        children.forEach((child, index) => {
+            child.classList.add("css-animate-child");
+            child.classList.add(`anim-type-${type}`);
+            child.style.transitionDelay = `${index * 0.15}s`;
         });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    section.classList.add('is-visible');
+                } else if (!persist) {
+                    section.classList.remove('is-visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: "0px 0px -10% 0px" });
+
+        observer.observe(section);
     }
 
     // Start loading frames right away

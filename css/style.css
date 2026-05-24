@@ -57,60 +57,40 @@ h4,
     font-weight: 700;
 }
 
-/* --- Loader --- */
-#loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: var(--bg-dark);
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.8s ease-out;
+/* --- CSS-first Animation System --- */
+.css-animate-parent .css-animate-child {
+    opacity: 0;
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
 }
 
-.loader-brand {
-    font-size: 4rem;
-    letter-spacing: -2px;
-    margin-bottom: 2rem;
+.css-animate-parent .css-animate-child.anim-type-fade-up {
+    transform: translateY(60px);
 }
 
-.loader-brand-img {
-    height: 80px;
-    /* Adjust based on original text size */
-    width: auto;
-    margin-bottom: 2rem;
-    object-fit: contain;
+.css-animate-parent .css-animate-child.anim-type-slide-left {
+    transform: translateX(-80px);
 }
 
-.loader-progress-wrap {
-    width: 200px;
-    height: 2px;
-    background: var(--text-muted);
-    position: relative;
-    overflow: hidden;
+.css-animate-parent .css-animate-child.anim-type-slide-right {
+    transform: translateX(80px);
 }
 
-#loader-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0%;
-    background: var(--text-primary);
-    transition: width 0.1s linear;
+.css-animate-parent .css-animate-child.anim-type-scale-up {
+    transform: translateY(40px) scale(0.9);
 }
 
-#loader-percent {
-    margin-top: 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-secondary);
+.css-animate-parent .css-animate-child.anim-type-clip-reveal {
+    transform: translateY(40px);
+    clip-path: inset(100% 0 0 0);
 }
+
+.css-animate-parent.is-visible .css-animate-child {
+    opacity: 1;
+    transform: translate(0) scale(1);
+    clip-path: inset(0 0 0 0);
+}
+
 
 /* --- Header --- */
 .site-header {
