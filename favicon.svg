@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="G3FSP">
+  <title>G3FSP</title>
+
+  <!-- Fond Acier Profond : silhouette nette quel que soit le thème
+       du navigateur (clair ou sombre). -->
+  <rect width="64" height="64" rx="11" fill="#1A1A1A"/>
+
+  <!-- Monogramme « G3 » — tracé stencil, angles à 90°, conforme aux
+       règles d'iconographie de la charte. Seul élément du logo qui
+       reste lisible à 16 px.
+       La barre médiane du « 3 » fait la moitié des barres haute et
+       basse : sans cet écart, la forme se lit « E ». -->
+  <g fill="none" stroke="#6DD400" stroke-width="5"
+     stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M28 22 H12 V42 H28 V32 H21"/>
+    <path d="M38 22 H52 V32 H45"/>
+    <path d="M52 32 V42 H38"/>
+  </g>
+</svg>

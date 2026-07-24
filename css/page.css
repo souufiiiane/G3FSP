@@ -1,0 +1,557 @@
+/* ==========================================================================
+   G3FSP — Pages intérieures
+   Thème clair (principal selon la charte) + bandeau hero sombre
+   ========================================================================== */
+
+body.page { padding-top: 0; }
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+.wrap--narrow { max-width: 860px; }
+
+section.band { padding-block: clamp(3.5rem, 8vw, 7rem); }
+.band--pale { background: var(--gris-pale); }
+.band--white { background: var(--blanc-pur); }
+.band--dark {
+  background: var(--acier);
+  color: var(--blanc-chantier);
+}
+.band--dark .eyebrow { color: var(--gris-clair); }
+.band--dark h2, .band--dark h3 { color: var(--blanc-chantier); }
+
+/* ==========================================================================
+   Hero de page
+   ========================================================================== */
+
+.page-hero {
+  position: relative;
+  background: var(--acier);
+  color: var(--blanc-chantier);
+  padding: calc(var(--header-h) + clamp(3.5rem, 8vw, 6.5rem)) 0 clamp(3rem, 6vw, 5rem);
+  overflow: hidden;
+}
+.page-hero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: var(--bedrock);
+  background: var(--volt);
+}
+.page-hero .eyebrow { color: var(--volt); }
+.page-hero h1 {
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  line-height: 0.98;
+  text-transform: uppercase;
+  color: var(--blanc-chantier);
+  max-width: 20ch;
+}
+.page-hero h1 .accent { color: var(--volt); }
+.page-hero__lead {
+  margin-top: 1.6rem;
+  max-width: 62ch;
+  font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+  color: var(--gris-clair);
+}
+.page-hero__actions {
+  margin-top: 2.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Fil d'Ariane */
+.breadcrumb {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+  margin-bottom: 1.4rem;
+}
+.breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.breadcrumb li::after { content: "/"; margin-left: 0.5rem; color: var(--volt); }
+.breadcrumb li:last-child::after { content: ""; }
+.breadcrumb a { color: var(--gris-clair); transition: color .2s; }
+.breadcrumb a:hover { color: var(--volt); }
+.breadcrumb [aria-current] { color: var(--blanc-chantier); }
+
+/* ==========================================================================
+   Titres de section
+   ========================================================================== */
+
+.section-head { margin-bottom: clamp(2rem, 4vw, 3rem); max-width: 62ch; }
+.section-head h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  text-transform: uppercase;
+  line-height: 1.03;
+}
+.section-head h2 .accent { color: var(--volt-dark); }
+.band--dark .section-head h2 .accent { color: var(--volt); }
+.section-head p { margin-top: 1rem; color: var(--gris-technique); }
+.band--dark .section-head p { color: var(--gris-clair); }
+
+/* ==========================================================================
+   Contenu rédactionnel
+   ========================================================================== */
+
+.prose { max-width: 68ch; }
+.prose h2 {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  text-transform: uppercase;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-top: 1.5rem;
+  border-top: var(--bedrock) solid var(--volt);
+}
+.prose h2:first-child { margin-top: 0; }
+.prose h3 {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.7rem;
+  color: var(--acier);
+}
+.prose ul, .prose ol { margin: 0 0 1.2em; padding-left: 0; list-style: none; }
+.prose ol { counter-reset: li; }
+.prose li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.65em;
+  width: 10px; height: 2px;
+  background: var(--volt);
+}
+.prose ol > li { counter-increment: li; }
+.prose ol > li::before {
+  content: counter(li, decimal-leading-zero);
+  position: absolute;
+  left: 0; top: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--volt-dark);
+}
+.prose strong { font-weight: 600; }
+.prose a:not(.btn) {
+  color: var(--volt-dark);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(74,147,0,.35);
+  transition: border-color .2s;
+}
+.prose a:not(.btn):hover { border-bottom-color: var(--volt-dark); }
+
+.callout {
+  margin: 2rem 0;
+  padding: 1.4rem 1.6rem;
+  background: var(--blanc-pur);
+  border-left: var(--bedrock) solid var(--volt);
+}
+.callout p:last-child { margin-bottom: 0; }
+.callout__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+
+.pull-quote {
+  margin: 2.5rem 0;
+  padding-left: 1.6rem;
+  border-left: var(--bedrock) solid var(--volt);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+  line-height: 1.25;
+  color: var(--acier);
+}
+
+/* ==========================================================================
+   Grilles de cartes
+   ========================================================================== */
+
+.grid {
+  display: grid;
+  gap: clamp(1.2rem, 2.2vw, 2rem);
+}
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+.card {
+  background: var(--blanc-pur);
+  border-left: var(--bedrock) solid var(--volt);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(26,26,26,.09); }
+.card h3 {
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.01em;
+}
+.card p { color: var(--gris-technique); font-size: 0.96rem; }
+.card__num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--volt);
+  margin-bottom: 0.6rem;
+}
+.card__link {
+  margin-top: auto;
+  padding-top: 1.2rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--volt-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap .22s ease;
+}
+.card:hover .card__link { gap: 0.9rem; }
+
+.band--dark .card {
+  background: var(--gris-beton);
+  color: var(--blanc-chantier);
+}
+.band--dark .card p { color: var(--gris-clair); }
+.band--dark .card__link { color: var(--volt); }
+
+/* Carte cliquable pleine surface */
+a.card { color: inherit; }
+
+/* ==========================================================================
+   Cartes projet illustrées
+   ========================================================================== */
+
+.project-card {
+  display: block;
+  position: relative;
+  background: var(--blanc-pur);
+  border-left: var(--bedrock) solid var(--volt);
+  overflow: hidden;
+  color: inherit;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(26,26,26,.13); }
+
+.project-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform .5s cubic-bezier(.2,.7,.3,1);
+}
+.project-card:hover img { transform: scale(1.04); }
+
+.project-card__body { padding: 1.4rem 1.5rem 1.6rem; }
+.project-card__place {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--volt-dark);
+  margin-bottom: 0.5rem;
+}
+.project-card h3 {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  line-height: 1.08;
+  margin-bottom: 0.5rem;
+}
+.project-card p { color: var(--gris-technique); font-size: 0.94rem; margin: 0; }
+
+.band--dark .project-card { background: var(--gris-beton); color: var(--blanc-chantier); }
+.band--dark .project-card p { color: var(--gris-clair); }
+.band--dark .project-card__place { color: var(--volt); }
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.faq { border-top: 1px solid var(--gris-pale); }
+.faq-item {
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--gris-pale);
+}
+.faq-item h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.1vw, 1.55rem);
+  line-height: 1.15;
+  margin-bottom: 0.7rem;
+  padding-left: 1.8rem;
+  position: relative;
+}
+.faq-item h3::before {
+  content: "?";
+  position: absolute;
+  left: 0; top: 0;
+  color: var(--volt-dark);
+  font-weight: 700;
+}
+.faq-item p {
+  color: var(--gris-technique);
+  max-width: 68ch;
+  margin: 0;
+}
+.band--dark .faq { border-top-color: rgba(245,244,240,.14); }
+.band--dark .faq-item { border-bottom-color: rgba(245,244,240,.14); }
+.band--dark .faq-item p { color: var(--gris-clair); }
+.band--dark .faq-item h3::before { color: var(--volt); }
+
+/* ==========================================================================
+   Tableaux techniques
+   ========================================================================== */
+
+.table-wrap { overflow-x: auto; margin: 1.5rem 0 2rem; }
+table.tech {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+  min-width: 460px;
+  background: var(--blanc-pur);
+}
+table.tech caption {
+  text-align: left;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris-technique);
+  padding-bottom: 0.7rem;
+}
+table.tech th, table.tech td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--gris-pale);
+}
+table.tech thead th {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--acier);
+  color: var(--blanc-chantier);
+  border-bottom: 0;
+}
+table.tech tbody tr:last-child td { border-bottom: 0; }
+table.tech td:first-child { font-weight: 600; }
+
+/* ==========================================================================
+   Bandeau chiffres
+   ========================================================================== */
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+.stat-row .stat-item { text-align: left; }
+.stat-row .stat-item .n {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  line-height: 1;
+  color: var(--volt);
+}
+.stat-row .stat-item .l {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+}
+.band--pale .stat-row .stat-item .n,
+.band--white .stat-row .stat-item .n { color: var(--volt-dark); }
+.band--pale .stat-row .stat-item .l,
+.band--white .stat-row .stat-item .l { color: var(--gris-technique); }
+
+/* ==========================================================================
+   Liste de villes
+   ========================================================================== */
+
+.city-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1px;
+  background: var(--gris-pale);
+  border: 1px solid var(--gris-pale);
+}
+.band--dark .city-list { background: rgba(245,244,240,.12); border-color: rgba(245,244,240,.12); }
+.city-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding: 1.3rem 1.4rem;
+  background: var(--blanc-pur);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  transition: background-color .22s ease, color .22s ease;
+}
+.band--dark .city-list a { background: var(--acier); color: var(--blanc-chantier); }
+.city-list a:hover { background: var(--volt); color: var(--acier); }
+.city-list .idx {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--volt);
+  letter-spacing: 0.1em;
+}
+.city-list a:hover .idx { color: var(--acier); }
+
+/* ==========================================================================
+   CTA de bas de page
+   ========================================================================== */
+
+.cta-band {
+  background: var(--acier);
+  color: var(--blanc-chantier);
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  position: relative;
+  overflow: hidden;
+}
+.cta-band h2 {
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  text-transform: uppercase;
+  max-width: 18ch;
+  line-height: 1;
+}
+.cta-band h2 .accent { color: var(--volt); }
+.cta-band p {
+  margin-top: 1.2rem;
+  max-width: 54ch;
+  color: var(--gris-clair);
+}
+.cta-band__actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   Formulaire de contact
+   ========================================================================== */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+.field { display: flex; flex-direction: column; gap: 0.45rem; }
+.field--full { grid-column: 1 / -1; }
+.field label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris-technique);
+}
+.field .req { color: var(--volt-dark); }
+.field input,
+.field select,
+.field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--acier);
+  background: var(--blanc-pur);
+  border: 1px solid #D9D7D2;
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  transition: border-color .2s ease, box-shadow .2s ease;
+  width: 100%;
+}
+.field textarea { min-height: 150px; resize: vertical; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--volt);
+  box-shadow: 0 0 0 3px rgba(109,212,0,.18);
+}
+.form-note { font-size: 0.84rem; color: var(--gris-technique); margin-top: 1rem; }
+
+.contact-info-list { list-style: none; }
+.contact-info-list li {
+  display: flex;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--gris-pale);
+}
+.band--dark .contact-info-list li { border-bottom-color: rgba(245,244,240,.12); }
+.contact-info-list li:last-child { border-bottom: 0; }
+.contact-info-list .k {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--volt);
+  min-width: 8.5rem;
+  padding-top: 0.25rem;
+}
+.contact-info-list .v {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+.contact-info-list .v a:hover { color: var(--volt); }
+
+/* ==========================================================================
+   Révélations au scroll (IntersectionObserver)
+   ========================================================================== */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .75s cubic-bezier(.2,.7,.3,1),
+              transform .75s cubic-bezier(.2,.7,.3,1);
+  transition-delay: var(--d, 0ms);
+}
+[data-reveal].is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 980px) {
+  .grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .grid--2, .grid--3, .grid--4 { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .contact-info-list li { flex-direction: column; gap: 0.25rem; }
+}
